@@ -12,5 +12,11 @@ def export_model(model, path, format):
     suffix = MODEL_FORMAT_SUFFIX[format]
     if format == 'torch':
         torch.save(model.state_dict(), path + suffix)
-    else:
-        raise NotImplementedError(f"Export format {format} is not implemented yet.")
+    elif format == 'onnx':
+        dummy_input = torch.randn(1, *model.input_shape)
+        torch.onnx.export(
+            model, dummy_input, path + suffix,
+            input_names=['input'],
+            output_names=['output'],
+            dynamic_axes={'input': {0: 'batch_size'}, 'output': {0: 'batch_size'}},
+        )

@@ -13,7 +13,7 @@ def load_data(test_size=0.2):
     )
     return X_train, y_train, X_test, y_test
 
-def prepare_data(X, y):
+def prepare_data(X, y, batch_size=1024):
     scalar = StandardScaler()
     X_scaled = scalar.fit_transform(X)
 
@@ -21,5 +21,5 @@ def prepare_data(X, y):
     y_tensor = torch.tensor(y, dtype=torch.float32).view(-1, 1)
 
     dataset = TensorDataset(X_tensor, y_tensor)
-    dataloader = DataLoader(dataset, batch_size=32, shuffle=True)
+    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
     return dataloader

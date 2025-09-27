@@ -1,8 +1,10 @@
 import torch
 
-criterion = torch.nn.MSELoss
-
-def evaluate(model, dataloader, device='cuda:0' if torch.cuda.is_available() else 'cpu'):
+def evaluate(
+    model, dataloader, 
+    criterion,
+    device='cuda:0' if torch.cuda.is_available() else 'cpu',
+):
     model.to(device)
     loss_fn = criterion()
     total_loss = 0.0

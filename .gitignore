@@ -78,3 +78,6 @@ poetry.lock
 # OS generated files
 .DS_Store
 Thumbs.db
+
+datasets/*
+!datasets/.gitkeep
