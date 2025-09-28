@@ -21,3 +21,20 @@ def evaluate(
     avg_loss = total_loss / len(dataloader.dataset)
     return avg_loss
 
+def compute_accuracy(model, dataloader, device='cuda:0' if torch.cuda.is_available() else 'cpu'):
+    model.to(device)
+    correct = 0
+    total = 0
+
+    model.eval()
+    with torch.no_grad():
+        for X_batch, y_batch in dataloader:
+            X_batch, y_batch = X_batch.to(device), y_batch.to(device)
+
+            outputs = model(X_batch)
+            predicted = (outputs >= 0.5).float()
+            total += y_batch.size(0)
+            correct += (predicted == y_batch).sum().item()
+
+    accuracy = correct / total
+    return accuracy

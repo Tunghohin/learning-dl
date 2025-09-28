@@ -13,6 +13,10 @@ DATASETS_METAS = {
     'fashion-mnist': DatasetMeta(
         name='Fashion-MNIST',
         url='https://www.kaggle.com/api/v1/datasets/download/andhikawb/fashion-mnist-png'
+    ),
+    'titanic': DatasetMeta(
+        name='Titanic',
+        url='https://www.kaggle.com/api/v1/datasets/download/brendan45774/test-file'
     )
 }
 
