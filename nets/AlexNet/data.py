@@ -59,4 +59,4 @@ def load_data():
     return train_set, test_set
 
 def prepare_data(dataset, batch_size=64):
-    return DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=10, pin_memory=True)
+    return DataLoader(dataset, batch_size=batch_size, shuffle=True, pin_memory=True)

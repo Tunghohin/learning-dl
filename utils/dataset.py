@@ -17,6 +17,10 @@ DATASETS_METAS = {
     'titanic': DatasetMeta(
         name='Titanic',
         url='https://www.kaggle.com/api/v1/datasets/download/brendan45774/test-file'
+    ),
+    'cat-vs-dog': DatasetMeta(
+        name='Cat-vs-Dog',
+        url='https://www.kaggle.com/api/v1/datasets/download/shaunthesheep/microsoft-catsvsdogs-dataset'
     )
 }
 

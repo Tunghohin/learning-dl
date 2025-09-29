@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 class LeNet5(nn.Module):
-    def __init__(self, num_classes=10):
+    def __init__(self, num_classes):
         super(LeNet5, self).__init__()
 
         self.features = nn.Sequential(
@@ -13,7 +13,7 @@ class LeNet5(nn.Module):
             nn.Conv2d(6, 16, kernel_size=5, stride=1, padding=0),
             nn.Tanh(),
             nn.AvgPool2d(kernel_size=2, stride=2),
-            nn.Conv2d(16, 120, kernel_size=5, stride=1, padding=0),
+            nn.Conv2d(16, 120, kernel_size=4, stride=1, padding=0),
             nn.Tanh()
         )
 
@@ -26,6 +26,5 @@ class LeNet5(nn.Module):
     def forward(self, x):
         x = self.features(x)
         x = x.view(x.size(0), -1)
-        x = self.classifier(x)
-        return x
+        return self.classifier(x).squeeze()
 

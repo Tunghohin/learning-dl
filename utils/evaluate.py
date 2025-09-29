@@ -30,11 +30,10 @@ def compute_accuracy(model, dataloader, device='cuda:0' if torch.cuda.is_availab
     with torch.no_grad():
         for X_batch, y_batch in dataloader:
             X_batch, y_batch = X_batch.to(device), y_batch.to(device)
-
-            outputs = model(X_batch)
-            predicted = (outputs >= 0.5).float()
+            outputs = torch.argmax(model(X_batch), dim=1).squeeze()
+            y_batch = torch.argmax(y_batch, dim=1).squeeze()
+            correct += (outputs == y_batch).sum().item()
             total += y_batch.size(0)
-            correct += (predicted == y_batch).sum().item()
 
     accuracy = correct / total
     return accuracy

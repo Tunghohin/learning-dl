@@ -31,6 +31,7 @@ def load_data():
     df['Embarked'] = df['Embarked'].map({"S": 0, "C": 1, "Q": 2})
     df = pd.get_dummies(df, columns=["Embarked"], prefix="Embarked")
     df = pd.get_dummies(df, columns=["Pclass"], prefix="Pclass")
+    df = pd.get_dummies(df, columns=["SibSp"], prefix="SibSp")
 
     for col in df.columns:
         df.fillna({col: df[col].median()}, inplace=True)
